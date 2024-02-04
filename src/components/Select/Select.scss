@@ -1,0 +1,97 @@
+.Select {
+  position: relative;
+  min-width: 350px;
+
+  &-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0.5rem;
+    min-height: 50px;
+    max-height: 250px;
+    background-color: var(--black_1);
+    width: 100%;
+    border-radius: 0.25rem;
+    z-index: 5;
+    overflow: auto;
+
+    &:empty {
+      content: "No Options";
+      text-align: center;
+      font-size: var(--fSize16);
+    }
+  }
+
+  &-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: var(--black_1);
+    padding: 0.5rem;
+    text-transform: capitalize;
+    min-height: 40px;
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 0.5rem;
+
+    &.active {
+      &::after {
+        transform: rotate(0.5turn);
+      }
+    }
+
+    .text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &::after {
+      margin-left: 0.5rem;
+      font-size: var(--fSize16);
+      transition: transform .2s ease;
+      content: "\25BC";
+    }
+  }
+
+  &-item {
+    padding: 0.5rem;
+    color: var(--white);
+    font-size: var(--fSize16);
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: background-color .3s ease;
+
+    &.active,
+    &:hover,
+    &:focus {
+      background-color: var(--gray_1);
+    }
+  }
+
+  .scroll {
+    &::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+      background-color: var(--black_2);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--black_1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--orange_1);
+      border-radius: 10px;
+    }
+  }
+}

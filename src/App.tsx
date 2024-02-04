@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChangeEvent, FC, useRef, useState } from "react";
+import { Select } from "./components/Select/Select";
+import { TextInput } from "./components/TextInput/TextInput";
+import Coins from "./mocks/CryptoCoins.json";
 
-function App() {
+export const App: FC = () => {
+  const [title, setTitle] = useState("");
+  const [value, setValue] = useState("");
+
+  const lowerValue = value.toLowerCase().trim();
+  const coins = useRef(Object.values(Coins)[0]);
+
+  const options = {
+    select: coins.current.slice(0, 100),
+    inputSelect: coins.current.slice(0, 100).filter(({ symbol, name }) =>
+      symbol.toLowerCase().includes(lowerValue) || name.toLowerCase().includes(lowerValue))
+  };
+
+  const states = {
+    simple: setTitle,
+    input: setValue,
+  };
+
+  const onChange = (level: "simple" | "input", coin: typeof options.select[number]) => {
+    const changeState = states[level];
+    changeState(coin ? coin.name.toUpperCase() : "");
+  };
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <main className="App">
+      <Select
+        value={title}
+        options={options.select}
+        listItemKey="id"
+        ListItem={({ name, symbol }) => <span>({symbol}) {name}</span>}
+        onSelect={onChange.bind(null, "simple")}
+      />
 
-export default App;
+      <Select
+        options={lowerValue ? options.inputSelect : options.select}
+        listItemKey="id"
+        ListItem={({ name, symbol }) => <span>({symbol}) {name}</span>}
+        onSelect={onChange.bind(null, "input")}
+        className="InputSelect"
+      >
+        <TextInput
+          id="select|input"
+          value={value}
+          onChange={onInputChange}
+          className="Select-input"
+        />
+      </Select>
+    </main>
+  );
+};

@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html,
+body {
+  font-size: 16px;
+}
+
+:root {
+  --fSize20: 1.25rem;
+  --fSize16: 1rem;
+
+  --black: #000;
+  --black_1: #151515;
+  --black_2: #232227;
+
+  --white: #fff;
+
+  --gray_1: #808080;
+
+  --orange_1: #fe9d00;
+}
+
+body {
+  background-color: var(--black_2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.App {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 10rem;
+}
+
+.InputSelect {
+  .Select-value {
+    padding: 0;
+  }
+  
+  .TextInput {
+    width: 100%;
+
+    &-errors {
+      display: none;
+    }
+
+    &-input,
+    &-input-wrap {
+      width: 100%;
+    }
+  }
+}
