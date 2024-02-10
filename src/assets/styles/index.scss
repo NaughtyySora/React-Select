@@ -50,6 +50,14 @@ body {
       display: none;
     }
 
+    &-input {
+      &::placeholder {
+        font-size: var(--fSize16);
+        color: var(--gray_1);
+        font-style: italic;
+      }
+    }
+
     &-input,
     &-input-wrap {
       width: 100%;

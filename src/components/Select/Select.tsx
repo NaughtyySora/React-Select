@@ -58,7 +58,7 @@ export function Select<T>({
       </div>
 
       {showList && (
-        <div className="Select-list scroll">
+        <div className="Select-list">
           {listChild}
 
           {options?.map(option => (

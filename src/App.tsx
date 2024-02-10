@@ -52,6 +52,7 @@ export const App: FC = () => {
           value={value}
           onChange={onInputChange}
           className="Select-input"
+          placeholder="Enter Coin"
         />
       </Select>
     </main>
